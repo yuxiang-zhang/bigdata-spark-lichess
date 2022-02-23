@@ -1,22 +1,26 @@
-## Appendix: Features of Dataset
+# Appendix: Features of Dataset
+## Categorical
 * game_id (string)
+* white_player_id (string)
+* black_player_id (string)
+* victory_status (enum) 
+* winner (enum)
 * is_game_rated (boolean)
+* opening_move_eco (string)
+* opening_move_name (string)
+* list_of_moves (list of strings) 
+
+## Numerical
 * start_time (timestamp)
-*	end_time (timestamp) 
-*	number_of_turns (int)
-*	victory_status (enum) 
-*	winner (enum)
-*	time_increment (timestamp) 
-*	white_player_id (string) 
-*	white_player_rating (int) 
-*	black_player_id (string) 
-*	black_player_rating (int)
-*	list_of_moves (list of strings) 
-*	opening_move_eco (string)
-*	opening_move_name (string) 
-*	opening_ply (int)
+* end_time (timestamp) 
+* time_increment (timestamp) 
+* number_of_turns (int)
+* white_player_rating (int) 
+* black_player_rating (int)
+* opening_ply (int)
 
-## Dataset Summary 
 
-The selected dataset, which was found on Kaggle, is  of historical chess games from the chess website www.lichess.org. There are 16 features within the dataset which can be seen on the appendix.  The dataset is complete and does not have any missing data. The games are recent historical ones, and the while and black player ratings follow a normal distribution. In our case, the normal distribution is considered as few low-ranking and high-ranking players, with most of the dataset being 'mid-ranking' players. The 'mid-ranking' players have more significance than the few 'low-ranking' and 'high-ranking' ones.  Given that a supervised learning model will be applied to the dataset, the appropriate evaluation metrics for this project is F1, precision, recall. Within the context of chess, neither the precision nor the recall metric is more pertinent than the other, therefore they will all be equally considered when applying F1. The dataset will follow a conventional 80-20 split. That is, 80% of the datapoints will be used to train the model and 20% of the datapoints will be used to test the model. Within the training dataset, a further 80-20 split will be performed (80% to train the model and 20% to validate the hyperparameters). The reason why the 80-20 split was chosen is because it will help us identify the features that influence the data the most.
+# Dataset Summary 
+
+The selected dataset from Kaggle contains 20,058 samples of chess matches, with no missing data. There are 7 numerical and 9 categorical features. For both questions, there exists class imbalance for the labels. For classification, 95% of winners fall into `black/white`, with 5% `draw`. Because predicting the correct winner is as important as reducing number of incorrect predictions, we chose the F1 score given our class imbalance. For regression, the predicted value will be the 'black_rating'. It follows a normal distribution, with the majority being "mid-ranking". The Root Mean Squared Error (RMSE) is chosen to evaluate the regressor because it serves as a single measure of predictive power for the dataset. The games are timestamped with ~70% occurring from January to September 2017. We will try to sample evenly across time. We observed that some players appear more than once in our dataset. To generalize the model prediction for new players, we consider grouping the samples by player_id when splitting the data to avoid introducing bias from some players. We aim for a dataset split of 60-20-20. Given that the dataset is not large, we need at least 60% of the datapoints for sufficient training. Given that our models include hyperparameters, we need a further 20% for validation. And lastly, we need 20% for testing.
 
