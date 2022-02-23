@@ -1,9 +1,16 @@
-# Research Questions
+# Project Summary
+## Team #6
+|Nafisa Shamsuzzaman| Cheikh Idrissa Diagne| Yu Xiang Zhang| Karim Rhoualem|
+|-|-|-|-|
+|40095391|40094098|40009567|26603157|
+|nafisa.shamsuzzaman@gmail.com|cheikh.diagne76@gmail.com|yuxiang.zhang@mail.concordia.ca|karim.rhoualem@gmail.com|
+
+## Research Questions
 Based on a set of chess match records:
 1. In a new match between two players, who is most likely to win?
 2. Can a player's rating be determined from a single match record with another player?
 
-# Model Design
+## Model Design
 The questions entail two supervised learning problems, where our dataset is labeled with match winners and player ratings respectively.
 
 Predicting the `winner` of a match is a multiclass classification problem, since the column has 3 unique values {`black`, `white`, `draw`}. Apache Spark implements the following multiclass classifiers: 
